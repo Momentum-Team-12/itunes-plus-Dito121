@@ -22,7 +22,6 @@ fetch("https://itunes.apple.com/search?term=jdilla&media=music", {
     }
 })
 
-
 // functions stored below here
 function buildElement(elementType, className, text) {
     let element = document.createElement(elementType)
