@@ -1,3 +1,4 @@
+let songDiv = document.getElementById('content')
 
 fetch("https://itunes.apple.com/search?term=jdilla&media=music", {
     method: 'GET',
@@ -7,11 +8,25 @@ fetch("https://itunes.apple.com/search?term=jdilla&media=music", {
     return response.json()
 })
 .then(function(data) {
-    console.log(data)
+    for (let result of data.results){
+        songCard = buildElement('div', 'songCard', '')
+        songName = buildElement('div', 'songName', result.trackName)
+        pic = buildElement('img', 'picture', '')
+        pic.src = result.artworkUrl100
+        artistName = buildElement('div', 'artistName', result.artistName)
 
-    for (let result of data.results)
-        console.log(result.kind)
-
-    return data
+        songCard.appendChild(pic)
+        songCard.appendChild(songName)
+        songCard.appendChild(artistName)
+        songDiv.appendChild(songCard)
+    }
 })
 
+
+// functions stored below here
+function buildElement(elementType, className, text) {
+    let element = document.createElement(elementType)
+    element.classList.add(className)
+    element.innerText = text
+    return element
+}
