@@ -51,3 +51,13 @@ body {
     color: white;
 }
 
+#shortcutCard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#activateShortcut {
+    align-self: flex-end;
+    padding-left: 5px;
+}
+

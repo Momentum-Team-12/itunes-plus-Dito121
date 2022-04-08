@@ -1,4 +1,6 @@
 let songDiv = document.getElementById('content') // this div contains all search results
+let shortcutDiv = document.getElementById('shortcutOptions')
+//let apiSearch = "https://proxy-itunes-api.glitch.me/search?term=" + userInput + "&media=music"
 
 fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
     method: 'GET',
@@ -8,6 +10,10 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
     return response.json()
 })
 .then(function(data) {
+
+    let shortcutSelect = document.createElement("select")
+    shortcutSelect.id = "shortcutSearch"
+
     for (let result of data.results){
 
         songCard = buildElement('div', 'songCard', '') 
@@ -35,6 +41,20 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
         // this puts release date of song into song card so that it is at bottom
         songDiv.appendChild(songCard) 
         // this puts song card with picture and info into the search results area
+
+        let option = document.createElement("option")
+        option.id = result.trackName
+        option.value = result.trackName
+        option.innerText = result.trackName
+        shortcutSelect.appendChild(option)
+        // this populates dropdown menu with search results for easy search selection
     }
+
+    let label = document.createElement("label");
+    let innerDiv = document.createElement("div");
+    innerDiv.innerText = "Shortcut for finding song: "
+    label.appendChild(innerDiv);
+
+    shortcutDiv.appendChild(label).appendChild(shortcutSelect);
 })
 

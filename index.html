@@ -25,17 +25,22 @@
     </form> 
 
     <script> 
-      function artistSearch() {
-        let artistCriteria = document.getElementById('search').value
+      function artistData() {
+        let searchTerms = document.getElementById('search').value
 
-        let select = document.getElementById('finalCurrency');
-        let conversion = select.value
+        let select = document.getElementById('shortcutDropdown');
+        let shortcutName = select.value
 
         let resultDiv = document.getElementById('result');
         resultDiv.innerText = amount * conversion
       }
     </script> 
   </div> 
+
+  <div id="shortcutCard"> 
+  <div id="shortcutOptions"> </div> 
+  <div id="activateShortcut"> <input type="submit" value="Find in results" onclick="shortcutFind(); return false"/> </div> 
+  </div>
 
   <hr class="line"> </hr> 
   <div> Search results: </div> 
