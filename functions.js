@@ -7,7 +7,11 @@ function buildElement(elementType, className, text) {
     return element
 }
 
+let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+function monthToMonth(numberOfMonth) {
+    return months[Number(numberOfMonth)-1]
+}
 function reformatReleaseDate(string) {
-    return string.slice()
+    return monthToMonth(string.slice(5,7)) + ' ' + string.slice(8,10) + ", " + string.slice(0,4)
 }
 

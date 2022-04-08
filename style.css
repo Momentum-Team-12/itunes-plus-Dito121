@@ -20,27 +20,34 @@ body {
 .songCard {
     display: flex;
     flex-wrap: wrap;
-    width: 200px;
+    width: 150px;
     padding: 20px;
 }
 
-img {
+.albumCover {
     width: 100%;
+}
+
+.artistName {
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding-top: 5px;
 }
 
 .songName {
     font-size: larger;
-    color: crimson;
+    color: purple;
     width: 100%;
     text-align: center;
     padding-top: 5px;
 }
 
-.artistName {
-    color: purple;
-    font-size: large;
-    width: 100%;
+.releaseDate {
+    font-size: small;
     text-align: center;
+    width: 100%;
     padding-top: 5px;
+    color: white;
 }
 

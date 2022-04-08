@@ -12,24 +12,27 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
 
         songCard = buildElement('div', 'songCard', '') 
         // this div-type element is the container for all song info
-        songName = buildElement('div', 'songName', result.trackName) 
-        songName.id = result.trackName
-        // this div-type element is for the song name
-        artistName = buildElement('div', 'artistName', result.artistName) 
-        artistName.id = result.artistName
-        // this div-type element is for the artist name
-        pic = buildElement('img', 'picture', '') 
+        pic = buildElement('img', 'albumCover', '') 
         // this img-type element is for the album cover
         pic.src = result.artworkUrl100.slice(0, -13) + "200x200bb.jpg"
         // this sets source url of album cover to appropriate picture
-        releaseDate = buildElement('div', 'picture', result.releaseDate) 
+        artistName = buildElement('div', 'artistName', result.artistName) 
+        artistName.id = result.artistName
+        // this div-type element is for the artist name
+        songName = buildElement('div', 'songName', result.trackName) 
+        songName.id = result.trackName
+        // this div-type element is for the song name
+        releaseDate = buildElement('div', 'releaseDate', reformatReleaseDate(result.releaseDate))
+        // this div-type element is for the release
 
         songCard.appendChild(pic) 
         // this puts picture of album cover into song card so that it is on the top
-        songCard.appendChild(songName) 
-        // this puts song name into song card so that it is directly under the image
         songCard.appendChild(artistName) 
         // this puts artist name into song card so that it is below song name
+        songCard.appendChild(songName) 
+        // this puts song name into song card so that it is directly under the image
+        songCard.appendChild(releaseDate)
+        // this puts release date of song into song card so that it is at bottom
         songDiv.appendChild(songCard) 
         // this puts song card with picture and info into the search results area
     }
