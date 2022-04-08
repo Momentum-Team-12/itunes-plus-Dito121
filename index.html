@@ -5,19 +5,41 @@
 <head> 
   <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <script src="main.js" defer></script> 
+  <script src="main.js" defer> </script> 
   <link rel="stylesheet" href="style.css"> 
+  <script src="functions.js"> </script> 
   <title> Music Search </title> 
 </head> 
 
 <header> 
-  <h1 class="title"> Sitman </h1> 
+  <h1 class="title"> Reproductor Multimedia </h1> 
 </header> 
 
 <body> 
   <hr class="line"> </hr> 
+
+  <div class="searchBar" id="input"> 
+    <form> 
+      Search iTunes by artist/band name: <input type="text" id="search"/> 
+      <input type="submit" value="Search" onclick="artistSearch(); return false"/> 
+    </form> 
+
+    <script> 
+      function artistSearch() {
+        let artistCriteria = document.getElementById('search').value
+
+        let select = document.getElementById('finalCurrency');
+        let conversion = select.value
+
+        let resultDiv = document.getElementById('result');
+        resultDiv.innerText = amount * conversion
+      }
+    </script> 
+  </div> 
+
+  <hr class="line"> </hr> 
   <div> Search results: </div> 
-  <div id="content"> </div> 
+  <div id="content"> </div> <!-- this is where the search results go, the so called 'song cards' -->
 
 </body> 
 

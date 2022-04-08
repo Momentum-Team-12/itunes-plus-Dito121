@@ -1,5 +1,10 @@
 .title {
     text-align: center;
+    color: yellow;
+}
+
+body {
+    background-color: gray;
 }
 
 #content {
@@ -8,32 +13,33 @@
 }
 
 .line {
-    border: 1px solid black;
+    border: 1px solid white;
     width: 100%;
 }
 
 .songCard {
     display: flex;
     flex-wrap: wrap;
-    width: 100px;
+    width: 200px;
     padding: 20px;
 }
 
 img {
-    width: 100px;
+    width: 100%;
 }
 
 .songName {
-    font-size: medium;
-    color: purple;
-    width: 100px;
+    font-size: larger;
+    color: crimson;
+    width: 100%;
     text-align: center;
     padding-top: 5px;
 }
 
 .artistName {
-    font-size: medium;
-    width: 100px;
+    color: purple;
+    font-size: large;
+    width: 100%;
     text-align: center;
     padding-top: 5px;
 }
