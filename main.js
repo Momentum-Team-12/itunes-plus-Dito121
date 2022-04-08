@@ -10,25 +10,33 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
     return response.json()
 })
 .then(function(data) {
-
+    
     let shortcutSelect = document.createElement("select")
     shortcutSelect.id = "shortcutSearch"
 
+    let label = document.createElement("label")
+    let innerDiv = document.createElement("div")
+    innerDiv.innerText = "Shortcut for finding song: "
+    label.appendChild(innerDiv)
+
+    shortcutDiv.appendChild(label).appendChild(shortcutSelect)
+
     for (let result of data.results){
 
-        songCard = buildElement('div', 'songCard', '') 
+        let songCard = buildElement('div', 'songCard', '') 
+        songCard.id = result.trackName
         // this div-type element is the container for all song info
-        pic = buildElement('img', 'albumCover', '') 
+        let pic = buildElement('img', 'albumCover', '') 
         // this img-type element is for the album cover
         pic.src = result.artworkUrl100.slice(0, -13) + "200x200bb.jpg"
         // this sets source url of album cover to appropriate picture
-        artistName = buildElement('div', 'artistName', result.artistName) 
+        let artistName = buildElement('div', 'artistName', result.artistName) 
         artistName.id = result.artistName
         // this div-type element is for the artist name
-        songName = buildElement('div', 'songName', result.trackName) 
-        songName.id = result.trackName
+        let songName = buildElement('div', 'songName', result.trackName) 
+        //songName.id = result.trackName
         // this div-type element is for the song name
-        releaseDate = buildElement('div', 'releaseDate', reformatReleaseDate(result.releaseDate))
+        let releaseDate = buildElement('div', 'releaseDate', reformatReleaseDate(result.releaseDate))
         // this div-type element is for the release
 
         songCard.appendChild(pic) 
@@ -43,18 +51,19 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
         // this puts song card with picture and info into the search results area
 
         let option = document.createElement("option")
-        option.id = result.trackName
         option.value = result.trackName
         option.innerText = result.trackName
         shortcutSelect.appendChild(option)
         // this populates dropdown menu with search results for easy search selection
     }
 
-    let label = document.createElement("label");
-    let innerDiv = document.createElement("div");
-    innerDiv.innerText = "Shortcut for finding song: "
-    label.appendChild(innerDiv);
+    let shortcutForm = document.getElementById("shortcutCard")
+    let selectBox = document.getElementById("shortcutSearch")
 
-    shortcutDiv.appendChild(label).appendChild(shortcutSelect);
+    shortcutForm.addEventListener("submit", function(event) {
+    event.preventDefault()
+    //console.log(selectBox.selectedIndex)
+    document.location = `#${selectBox.options[selectBox.selectedIndex].value}`
+    })
 })
 

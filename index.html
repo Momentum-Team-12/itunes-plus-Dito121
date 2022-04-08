@@ -21,26 +21,15 @@
   <div class="searchBar" id="input"> 
     <form> 
       Search iTunes by artist/band name: <input type="text" id="search"/> 
-      <input type="submit" value="Search" onclick="artistSearch(); return false"/> 
+      <input type="submit" value="Search"/> 
     </form> 
 
-    <script> 
-      function artistData() {
-        let searchTerms = document.getElementById('search').value
-
-        let select = document.getElementById('shortcutDropdown');
-        let shortcutName = select.value
-
-        let resultDiv = document.getElementById('result');
-        resultDiv.innerText = amount * conversion
-      }
-    </script> 
   </div> 
 
-  <div id="shortcutCard"> 
+  <form id="shortcutCard"> 
   <div id="shortcutOptions"> </div> 
-  <div id="activateShortcut"> <input type="submit" value="Find in results" onclick="shortcutFind(); return false"/> </div> 
-  </div>
+  <div id="activateShortcut"> <input id="shortcutSubmit" type="submit" value="Find in results"; return false> </div> 
+  </form> 
 
   <hr class="line"> </hr> 
   <div> Search results: </div> 
