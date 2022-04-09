@@ -1,10 +1,12 @@
 .title {
     text-align: center;
-    color: yellow;
+    color: white;
 }
 
 body {
-    background-color: gray;
+    background-color: black;
+    color: yellow;
+    font-family: 'Asap', sans-serif;
 }
 
 #content {
@@ -37,7 +39,7 @@ body {
 
 .songName {
     font-size: larger;
-    color: purple;
+    color: hotpink;
     width: 100%;
     text-align: center;
     padding-top: 5px;

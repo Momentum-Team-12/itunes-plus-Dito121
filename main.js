@@ -1,4 +1,5 @@
-let songDiv = document.getElementById('content') // this div contains all search results
+let searchResultsDiv = document.getElementById('content') 
+// this div contains all search results
 let shortcutDiv = document.getElementById('shortcutOptions')
 //let apiSearch = "https://proxy-itunes-api.glitch.me/search?term=" + userInput + "&media=music"
 
@@ -10,7 +11,7 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
     return response.json()
 })
 .then(function(data) {
-    
+
     let shortcutSelect = document.createElement("select")
     shortcutSelect.id = "shortcutSearch"
 
@@ -26,10 +27,6 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
         let songCard = buildElement('div', 'songCard', '') 
         songCard.id = result.trackName
         // this div-type element is the container for all song info
-        let pic = buildElement('img', 'albumCover', '') 
-        // this img-type element is for the album cover
-        pic.src = result.artworkUrl100.slice(0, -13) + "200x200bb.jpg"
-        // this sets source url of album cover to appropriate picture
         let artistName = buildElement('div', 'artistName', result.artistName) 
         artistName.id = result.artistName
         // this div-type element is for the artist name
@@ -38,6 +35,10 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
         // this div-type element is for the song name
         let releaseDate = buildElement('div', 'releaseDate', reformatReleaseDate(result.releaseDate))
         // this div-type element is for the release
+        let pic = buildElement('img', 'albumCover', '') 
+        // this img-type element is for the album cover
+        pic.src = result.artworkUrl100.slice(0, -13) + "200x200bb.jpg"
+        // this sets source url of album cover to appropriate picture
 
         songCard.appendChild(pic) 
         // this puts picture of album cover into song card so that it is on the top
@@ -47,7 +48,7 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
         // this puts song name into song card so that it is directly under the image
         songCard.appendChild(releaseDate)
         // this puts release date of song into song card so that it is at bottom
-        songDiv.appendChild(songCard) 
+        searchResultsDiv.appendChild(songCard) 
         // this puts song card with picture and info into the search results area
 
         let option = document.createElement("option")
