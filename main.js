@@ -1,9 +1,10 @@
-let searchResultsDiv = document.getElementById('content') 
+let searchResultsDiv = document.getElementById('searchResultsDiv') 
 // this div contains all search results
-let shortcutDiv = document.getElementById('shortcutOptions')
+let quickfindDiv = document.getElementById('quickfindDiv')
+let quickfindOptions = document.getElementById('quickfindOptions')
 //let apiSearch = "https://proxy-itunes-api.glitch.me/search?term=" + userInput + "&media=music"
 
-fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
+fetch("https://proxy-itunes-api.glitch.me/search?term=arctic+monkeys&media=music", {
     method: 'GET',
     headers: {},
 })
@@ -12,15 +13,15 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
 })
 .then(function(data) {
 
-    let shortcutSelect = document.createElement("select")
-    shortcutSelect.id = "shortcutSearch"
+    let quickfindSelect = document.createElement("select")
+    quickfindSelect.id = "quickfindSelect"
+    
+    let labelElement = document.createElement("label")
+    let label = document.createElement("div")
+    label.innerText = "Quick Find: "
+    labelElement.appendChild(label)
 
-    let label = document.createElement("label")
-    let innerDiv = document.createElement("div")
-    innerDiv.innerText = "Shortcut for finding song: "
-    label.appendChild(innerDiv)
-
-    shortcutDiv.appendChild(label).appendChild(shortcutSelect)
+    quickfindOptions.appendChild(label).appendChild(quickfindSelect)
 
     for (let result of data.results){
 
@@ -54,17 +55,12 @@ fetch("https://proxy-itunes-api.glitch.me/search?term=radiohead&media=music", {
         let option = document.createElement("option")
         option.value = result.trackName
         option.innerText = result.trackName
-        shortcutSelect.appendChild(option)
+        quickfindSelect.appendChild(option)
         // this populates dropdown menu with search results for easy search selection
     }
 
-    let shortcutForm = document.getElementById("shortcutCard")
-    let selectBox = document.getElementById("shortcutSearch")
-
-    shortcutForm.addEventListener("submit", function(event) {
-    event.preventDefault()
-    //console.log(selectBox.selectedIndex)
-    document.location = `#${selectBox.options[selectBox.selectedIndex].value}`
+    quickfindDiv.addEventListener("submit", function(event) {
+    document.location = `#${quickfindSelect.options[quickfindSelect.selectedIndex].value}`
     })
 })
 

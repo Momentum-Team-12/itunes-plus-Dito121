@@ -1,20 +1,16 @@
 .title {
     text-align: center;
-    color: white;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url("https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-    background-size: cover;
-    height: 100%;
-    position: relative;
-    background-repeat: no-repeat;
+    color: #116466;
+    height: 25%;
 }
 
 body {
-    background-color: black;
-    color: yellow;
+    background: center / contain repeat url(https://images.pexels.com/photos/1341279/pexels-photo-1341279.jpeg);
+    color: #ad5eed;
     font-family: 'Asap', sans-serif;
 }
 
-#content {
+#searchResultsDiv {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -28,7 +24,7 @@ body {
 .songCard {
     display: flex;
     flex-direction: column;
-    width: 150px;
+    width: 200px;
     padding: 20px;
 }
 
@@ -37,15 +33,14 @@ body {
 }
 
 .artistName {
-    color: white;
     width: 100%;
     text-align: center;
-    padding-top: 5px;
+    padding-top: 20px;
 }
 
 .songName {
     font-size: larger;
-    color: hotpink;
+    color: #C3073F;
     width: 100%;
     text-align: center;
     padding-top: 5px;
@@ -56,16 +51,17 @@ body {
     text-align: center;
     width: 100%;
     padding-top: 5px;
-    color: white;
+    color: #D1E8E2;
 }
 
-#shortcutCard {
+#input {
+    padding-top: 15px;
+}
+
+#quickfindDiv {
     display: flex;
     flex-wrap: wrap;
-}
-
-#activateShortcut {
-    align-self: flex-end;
-    padding-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 15px;
 }
 

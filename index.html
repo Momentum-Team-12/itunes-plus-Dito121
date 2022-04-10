@@ -12,8 +12,8 @@
   <title> Music Search </title> 
 </head> 
 
-<header> 
-  <h1 class="title"> Music Player </h1> 
+<header class="title"> 
+  <h1> Music Player </h1> 
 </header> 
 
 <body> 
@@ -21,22 +21,20 @@
   <hr class="line"> </hr> 
 
   <div class="searchBar" id="input"> 
-
     <form> 
       <input placeholder="Search iTunes by artist/band name" required size="50" type="text" id="search"/> 
       <input type="submit" value="Search"/> 
     </form> 
-
   </div> 
 
-  <form id="shortcutCard"> 
-  <div id="shortcutOptions"> </div> 
-  <div id="activateShortcut"> <input id="shortcutSubmit" type="submit" value="Find in results"; return false> </div> 
+  <form id="quickfindDiv"> 
+    <div id="quickfindOptions"> </div> 
+    <input id="quickfindSubmit" type="submit" value="Find"; return false> 
   </form> 
 
   <hr class="line"> </hr> 
   <div> Search results: </div> 
-  <div id="content"> </div> <!-- this is where the search results go, the so called 'song cards' -->
+  <div id="searchResultsDiv"> </div> 
 
 </body> 
 
