@@ -1,6 +1,11 @@
 .title {
     text-align: center;
     color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url("https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    height: 100%;
+    position: relative;
+    background-repeat: no-repeat;
 }
 
 body {
@@ -12,6 +17,7 @@ body {
 #content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .line {
@@ -21,7 +27,7 @@ body {
 
 .songCard {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 150px;
     padding: 20px;
 }
