@@ -4,7 +4,12 @@
     height: 25%;
 }
 
+#quickfindLabel {
+    padding-right: 15px;
+}
+
 body {
+    
     background: center / contain repeat url(https://images.pexels.com/photos/1341279/pexels-photo-1341279.jpeg);
     color: #ad5eed;
     font-family: 'Asap', sans-serif;

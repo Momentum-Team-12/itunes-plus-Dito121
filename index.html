@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="style.css"> 
   <script src="functions.js"> </script> 
   <link href="http://fonts.cdnfonts.com/css/asap-3" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
   <title> Music Search </title> 
 </head> 
 
@@ -20,16 +21,17 @@
 
   <hr class="line"> </hr> 
 
-  <div class="searchBar" id="input"> 
-    <form> 
-      <input placeholder="Search iTunes by artist/band name" required size="50" type="text" id="search"/> 
-      <input type="submit" value="Search"/> 
+  <div> 
+    <form action="" id="searchForm"> 
+      <input name="search" placeholder="Search iTunes by artist/band name" required size="50" type="text" id="search"/> 
+      <button type="submit"> Search </button> 
     </form> 
   </div> 
 
   <form id="quickfindDiv"> 
-    <div id="quickfindOptions"> </div> 
-    <input id="quickfindSubmit" type="submit" value="Find"; return false> 
+    <label id="quickfindLabel"> Quickfind: </label> 
+    <div id="quickfindOptions"> <select id="quickfindSelect"> </select> </div> 
+    <button id="quickfindSubmit" type="submit"> Find </button>
   </form> 
 
   <hr class="line"> </hr> 
