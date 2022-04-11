@@ -29,15 +29,21 @@ body {
 .songCard {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 300px;
     padding: 20px;
 }
 
 .albumCover {
+    padding-left: 12.5%;
+    width: 75%;
+}
+
+.audioPreview {
     width: 100%;
 }
 
 .artistName {
+
     width: 100%;
     text-align: center;
     padding-top: 20px;
@@ -45,7 +51,7 @@ body {
 
 .songName {
     font-size: larger;
-    color: #C3073F;
+    color: rgb(188, 114, 188);
     width: 100%;
     text-align: center;
     padding-top: 5px;

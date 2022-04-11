@@ -3,15 +3,12 @@ let searchForm = document.getElementById('searchForm')
 searchForm.addEventListener('submit', function(event){
     event.preventDefault()
 
-    let searchResultsDiv = document.getElementById('searchResultsDiv') 
-    // this div contains all search results
     let quickfindDiv = document.getElementById('quickfindDiv')
     let quickfindOptions = document.getElementById('quickfindOptions')
 
     let searchValue = document.getElementById('search').value
-    let apiSearch = `https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=music`
 
-    fetch(apiSearch, {
+    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=music`, {
         method: 'GET',
         headers: {},
     })
@@ -20,12 +17,19 @@ searchForm.addEventListener('submit', function(event){
     })
     .then(function(data) {
 
-        var quickfindSelect = document.getElementById('quickfindSelect')
+        let content = document.getElementById('content')
+        let searchResultsDiv = document.getElementById('searchResultsDiv') 
+        searchResultsDiv.remove()
+
+        searchResultsDiv = document.createElement('div')
+        searchResultsDiv.id = 'searchResultsDiv'
+        content.appendChild(searchResultsDiv)
+
+        let quickfindSelect = document.getElementById('quickfindSelect')
         quickfindSelect.remove()
 
-        var quickfindSelect = document.createElement("select")
+        quickfindSelect = document.createElement("select")
         quickfindSelect.id = "quickfindSelect"
-
         quickfindOptions.appendChild(quickfindSelect)
 
         for (let result of data.results){
@@ -37,23 +41,32 @@ searchForm.addEventListener('submit', function(event){
             artistName.id = result.artistName
             // this div-type element is for the artist name
             let songName = buildElement('div', 'songName', result.trackName) 
-            //songName.id = result.trackName
             // this div-type element is for the song name
             let releaseDate = buildElement('div', 'releaseDate', reformatReleaseDate(result.releaseDate))
             // this div-type element is for the release
             let pic = buildElement('img', 'albumCover', '') 
             // this img-type element is for the album cover
-            pic.src = result.artworkUrl100.slice(0, -13) + "200x200bb.jpg"
+            pic.src = result.artworkUrl100.slice(0, -13) + "300x300bb.jpg"
             // this sets source url of album cover to appropriate picture
+
+            let audio = buildElement('audio', 'audioPreview', '')
+            audio.src = result.previewUrl
+            audio.controls = 'controls'
+            audio.type = 'audio'
+            audio.addEventListener("click", function(event) {
+                event.preventDefault()
+                audio.play()
+            })
 
             songCard.appendChild(pic) 
             // this puts picture of album cover into song card so that it is on the top
+            songCard.appendChild(audio)
             songCard.appendChild(artistName) 
-            // this puts artist name into song card so that it is below song name
+            // this puts artist name into song card
             songCard.appendChild(songName) 
-            // this puts song name into song card so that it is directly under the image
+            // this puts song name into song card
             songCard.appendChild(releaseDate)
-            // this puts release date of song into song card so that it is at bottom
+            // this puts release date of song
             searchResultsDiv.appendChild(songCard) 
             // this puts song card with picture and info into the search results area
 
