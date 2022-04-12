@@ -42,7 +42,7 @@ searchForm.addEventListener('submit', function(event){
             // this div-type element is for the artist name
             let songName = buildElement('div', 'songName', result.trackName) 
             // this div-type element is for the song name
-            let releaseDate = buildElement('div', 'releaseDate', reformatReleaseDate(result.releaseDate))
+            let releaseDate = buildElement('div', 'releaseDate', reformatDate(result.releaseDate))
             // this div-type element is for the release
             let pic = buildElement('img', 'albumCover', '') 
             // this img-type element is for the album cover

@@ -11,7 +11,7 @@ let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oc
 function monthToMonth(numberOfMonth) {
     return months[Number(numberOfMonth)-1]
 }
-function reformatReleaseDate(string) {
+function reformatDate(string) {
     return monthToMonth(string.slice(5,7)) + ' ' + string.slice(8,10) + ", " + string.slice(0,4)
 }
 
