@@ -8,14 +8,20 @@ searchForm.addEventListener('submit', function(event){
 
     let searchValue = document.getElementById('search').value
 
-    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=music`, {
+    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=rmusic`, {
         method: 'GET',
         headers: {},
     })
     .then(function(response) {
         return response.json()
     })
+    // this catch comes up if url is bad
     .then(function(data) {
+        if (data.results) {
+            if (data.results.length === 0){
+                console.log('no results found')
+                return 
+            }
 
         let content = document.getElementById('content')
         let searchResultsDiv = document.getElementById('searchResultsDiv') 
@@ -52,7 +58,6 @@ searchForm.addEventListener('submit', function(event){
             let audio = buildElement('audio', 'audioPreview', '')
             audio.src = result.previewUrl
             audio.controls = 'controls'
-            audio.type = 'audio'
             audio.addEventListener("click", function(event) {
                 event.preventDefault()
                 audio.play()
@@ -67,7 +72,7 @@ searchForm.addEventListener('submit', function(event){
             // this puts song name into song card
             songCard.appendChild(releaseDate)
             // this puts release date of song
-            searchResultsDiv.appendChild(songCard) 
+            searchResultsDiv.appendChild(songCard)
             // this puts song card with picture and info into the search results area
 
             let option = buildElement("option", "option", result.trackName)
@@ -82,5 +87,6 @@ searchForm.addEventListener('submit', function(event){
             event.preventDefault()
             document.location = `#${quickfindSelect.options[quickfindSelect.selectedIndex].value}`
         })
-    })
+        }
+    }).catch(error => {console.error(error) , 'error'})
 })
