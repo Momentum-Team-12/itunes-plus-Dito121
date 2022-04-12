@@ -76,6 +76,8 @@ searchForm.addEventListener('submit', function(event){
             // this populates dropdown menu with search results for easy search selection
         }
 
+        sortSelect(quickfindSelect)
+
         quickfindDiv.addEventListener("submit", function(event) {
             event.preventDefault()
             document.location = `#${quickfindSelect.options[quickfindSelect.selectedIndex].value}`
