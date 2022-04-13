@@ -8,7 +8,7 @@ searchForm.addEventListener('submit', function(event){
 
     let searchValue = document.getElementById('search').value
 
-    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=music`, {
+    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=music&attribute=artistTerm`, {
         method: 'GET',
     })
     .then(function(response) {
