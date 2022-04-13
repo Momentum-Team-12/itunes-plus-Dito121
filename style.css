@@ -8,9 +8,17 @@
     padding-right: 15px;
 }
 
+.settings {
+    display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.settingsLabel {
+    padding-right: 15px;
+}
+
 body {
-    
-    background: center / contain repeat url(https://images.pexels.com/photos/1341279/pexels-photo-1341279.jpeg);
     color: #ad5eed;
     font-family: 'Asap', sans-serif;
 }
@@ -29,7 +37,7 @@ body {
 .songCard {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 200px;
     padding: 20px;
 }
 
@@ -75,4 +83,3 @@ body {
     padding-top: 20px;
     padding-bottom: 15px;
 }
-

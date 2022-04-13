@@ -22,9 +22,21 @@
   <hr class="line"> </hr> 
 
   <form action="" id="searchForm"> 
-    <input name="search" placeholder="Search iTunes by artist/band name" required size="50" type="text" id="search"/> 
+    <input name="search" placeholder="Enter search keywords here" required size="50" type="text" id="search"/> 
     <button type="submit"> Search </button> 
   </form> 
+
+<div class="settings"> 
+  <label class="settingsLabel"> Search settings: </label> 
+  <select id="settingsSelect"> 
+    <option id="searchByArtist" value="artist"> Search by artist/band name </option> 
+    <option id="searchBySong" value="song"> Search by song name </option> 
+  </select> 
+
+  <form action=""> 
+    <input name="search" placeholder="Number of search results, 200 max" required size="30" type="text" id="numberResults"/> 
+  </form> 
+</div> 
 
   <form id="quickfindDiv"> 
     <label id="quickfindLabel"> Quickfind: </label> 

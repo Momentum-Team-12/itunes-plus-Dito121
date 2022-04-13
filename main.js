@@ -5,8 +5,23 @@ searchForm.addEventListener('submit', function(event){
 
     let quickfindDiv = document.getElementById('quickfindDiv')
     let quickfindOptions = document.getElementById('quickfindOptions')
+    let settingsSelect = document.getElementById('settingsSelect')
+    let searchValue = ''
+    let numberResults = document.getElementById('numberResults').value
 
-    let searchValue = document.getElementById('search').value + '&media=music&attribute=artistTerm'
+    if (settingsSelect.options[settingsSelect.selectedIndex].value === 'song') {
+        searchValue = document.getElementById('search').value + '&media=music&attribute=songTerm'
+    }
+
+    else if (settingsSelect.options[settingsSelect.selectedIndex].value === 'artist') {
+        searchValue = document.getElementById('search').value + '&media=music&attribute=artistTerm'
+    }
+
+    if (between(numberResults, 1, 200) === false) {
+        numberResults = 50
+    }
+
+    searchValue += `&limit=${numberResults}`
 
     fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}`, {
         method: 'GET',
@@ -47,7 +62,6 @@ searchForm.addEventListener('submit', function(event){
                 // this div-type element is for the artist name
                 let songName = buildElement('div', 'songName', result.trackName) 
                 // this div-type element is for the song name
-                console.log(result.releaseDate)
                 let releaseDate = buildElement('div', 'releaseDate', reformatDate(result.releaseDate))
                 // this div-type element is for the release
                 let pic = buildElement('img', 'albumCover', '') 
@@ -59,9 +73,9 @@ searchForm.addEventListener('submit', function(event){
                 audio.src = result.previewUrl
                 audio.controls = 'controls'
                 audio.addEventListener("click", function(event) {
-                event.preventDefault()
+                    event.preventDefault()
                 audio.play()
-            })
+                })
 
             songCard.appendChild(pic) 
             // this puts picture of album cover into song card so that it is on the top
@@ -81,12 +95,12 @@ searchForm.addEventListener('submit', function(event){
             // this populates dropdown menu with search results for easy search selection
         }
 
-        sortSelect(quickfindSelect)
+            sortSelect(quickfindSelect)
 
-        quickfindDiv.addEventListener("submit", function(event) {
-            event.preventDefault()
-            document.location = `#${quickfindSelect.options[quickfindSelect.selectedIndex].value}`
-        })
+            quickfindDiv.addEventListener("submit", function(event) {
+                event.preventDefault()
+                document.location = `#${quickfindSelect.options[quickfindSelect.selectedIndex].value}`
+            })
         }
     })
     .catch(error => {

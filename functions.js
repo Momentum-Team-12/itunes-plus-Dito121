@@ -37,3 +37,12 @@ function sortSelect(selElem) {
     return;
 }
 
+function between(value, lower, upper) {
+    value = Number(value)
+    if (value >= lower && value <= upper) {
+        return true
+    }
+    else {
+        return false
+    }
+}
