@@ -8,20 +8,14 @@ searchForm.addEventListener('submit', function(event){
 
     let searchValue = document.getElementById('search').value
 
-    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=rmusic`, {
+    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=music`, {
         method: 'GET',
-        headers: {},
     })
     .then(function(response) {
         return response.json()
     })
     // this catch comes up if url is bad
     .then(function(data) {
-        if (data.results) {
-            if (data.results.length === 0){
-                console.log('no results found')
-                return 
-            }
 
         let content = document.getElementById('content')
         let searchResultsDiv = document.getElementById('searchResultsDiv') 
@@ -31,34 +25,41 @@ searchForm.addEventListener('submit', function(event){
         searchResultsDiv.id = 'searchResultsDiv'
         content.appendChild(searchResultsDiv)
 
-        let quickfindSelect = document.getElementById('quickfindSelect')
-        quickfindSelect.remove()
+        if (data.results) {
+            if (data.results.length === 0){
+                searchResultsDiv.innerText = 'no results found'
+                console.log('no results found')
+                return 
+            }
 
-        quickfindSelect = document.createElement("select")
-        quickfindSelect.id = "quickfindSelect"
-        quickfindOptions.appendChild(quickfindSelect)
+            let quickfindSelect = document.getElementById('quickfindSelect')
+            quickfindSelect.remove()
 
-        for (let result of data.results){
+            quickfindSelect = document.createElement("select")
+            quickfindSelect.id = "quickfindSelect"
+            quickfindOptions.appendChild(quickfindSelect)
 
-            let songCard = buildElement('div', 'songCard', '') 
-            songCard.id = result.trackName
-            // this div-type element is the container for all song info
-            let artistName = buildElement('div', 'artistName', result.artistName) 
-            artistName.id = result.artistName
-            // this div-type element is for the artist name
-            let songName = buildElement('div', 'songName', result.trackName) 
-            // this div-type element is for the song name
-            let releaseDate = buildElement('div', 'releaseDate', reformatDate(result.releaseDate))
-            // this div-type element is for the release
-            let pic = buildElement('img', 'albumCover', '') 
-            // this img-type element is for the album cover
-            pic.src = result.artworkUrl100.slice(0, -13) + "300x300bb.jpg"
-            // this sets source url of album cover to appropriate picture
+            for (let result of data.results){
 
-            let audio = buildElement('audio', 'audioPreview', '')
-            audio.src = result.previewUrl
-            audio.controls = 'controls'
-            audio.addEventListener("click", function(event) {
+                let songCard = buildElement('div', 'songCard', '') 
+                songCard.id = result.trackName
+                // this div-type element is the container for all song info
+                let artistName = buildElement('div', 'artistName', result.artistName) 
+                artistName.id = result.artistName
+                // this div-type element is for the artist name
+                let songName = buildElement('div', 'songName', result.trackName) 
+                // this div-type element is for the song name
+                let releaseDate = buildElement('div', 'releaseDate', reformatDate(result.releaseDate))
+                // this div-type element is for the release
+                let pic = buildElement('img', 'albumCover', '') 
+                // this img-type element is for the album cover
+                pic.src = result.artworkUrl100.slice(0, -13) + "300x300bb.jpg"
+                // this sets source url of album cover to appropriate picture
+
+                let audio = buildElement('audio', 'audioPreview', '')
+                audio.src = result.previewUrl
+                audio.controls = 'controls'
+                audio.addEventListener("click", function(event) {
                 event.preventDefault()
                 audio.play()
             })
@@ -88,5 +89,13 @@ searchForm.addEventListener('submit', function(event){
             document.location = `#${quickfindSelect.options[quickfindSelect.selectedIndex].value}`
         })
         }
-    }).catch(error => {console.error(error) , 'error'})
+
+        else {
+            console.error(error)
+        }
+    })
+    .catch(error => {
+        searchResultsDiv.innerText = `Error: ${error}`;
+        console.error('There was an error!', error);
+    });
 })
