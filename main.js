@@ -6,9 +6,9 @@ searchForm.addEventListener('submit', function(event){
     let quickfindDiv = document.getElementById('quickfindDiv')
     let quickfindOptions = document.getElementById('quickfindOptions')
 
-    let searchValue = document.getElementById('search').value
+    let searchValue = document.getElementById('search').value + '&media=music&attribute=artistTerm'
 
-    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}&media=music&attribute=artistTerm`, {
+    fetch(`https://proxy-itunes-api.glitch.me/search?term=${searchValue}`, {
         method: 'GET',
     })
     .then(function(response) {
