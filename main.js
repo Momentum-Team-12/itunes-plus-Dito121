@@ -27,7 +27,6 @@ searchForm.addEventListener('submit', function(event){
         if (data.results) {
             if (data.results.length === 0){
                 searchResultsDiv.innerText = 'no results found'
-                console.log('no results found')
                 return 
             }
 
@@ -48,6 +47,7 @@ searchForm.addEventListener('submit', function(event){
                 // this div-type element is for the artist name
                 let songName = buildElement('div', 'songName', result.trackName) 
                 // this div-type element is for the song name
+                console.log(result.releaseDate)
                 let releaseDate = buildElement('div', 'releaseDate', reformatDate(result.releaseDate))
                 // this div-type element is for the release
                 let pic = buildElement('img', 'albumCover', '') 
@@ -88,13 +88,9 @@ searchForm.addEventListener('submit', function(event){
             document.location = `#${quickfindSelect.options[quickfindSelect.selectedIndex].value}`
         })
         }
-
-        else {
-            console.error(error)
-        }
     })
     .catch(error => {
-        searchResultsDiv.innerText = `Error: ${error}`;
-        console.error('There was an error!', error);
+        searchResultsDiv.innerText = 'none';
+        console.error(error)
     });
 })

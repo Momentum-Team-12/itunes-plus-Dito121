@@ -12,7 +12,11 @@ function monthToMonth(numberOfMonth) {
     return months[Number(numberOfMonth)-1]
 }
 function reformatDate(string) {
-    return monthToMonth(string.slice(5,7)) + ' ' + string.slice(8,10) + ", " + string.slice(0,4)
+    if (string) {
+        return monthToMonth(string.slice(5,7)) + ' ' + string.slice(8,10) + ", " + string.slice(0,4)
+    } else {
+        return ''
+    }
 }
 
 function sortSelect(selElem) {
