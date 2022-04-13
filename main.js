@@ -14,7 +14,6 @@ searchForm.addEventListener('submit', function(event){
     .then(function(response) {
         return response.json()
     })
-    // this catch comes up if url is bad
     .then(function(data) {
 
         let content = document.getElementById('content')
